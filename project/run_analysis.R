@@ -95,7 +95,7 @@ for (i in 1:length(var_names))
 
 print(var_names)
 colnames(means_and_stds)<- var_names
-write.table(means_and_stds, "../tidydata/means_and_stds.txt", row.name=FALSE)
+write.table(means_and_stds, "../tidydata/means_and_stds.txt", row.names=FALSE)
 
 ## Step 6. Creates a second, independent tidy data set called "tidy_data" with the average of each variable for each activity and each subject
 ## and save as tidy_data.csv
@@ -104,8 +104,4 @@ library(plyr)
 tidy_data<- ddply(means_and_stds, .(subject_id, activity_id), .fun=function(x){ colMeans(x[,-c(1:2)]) })
 colnames(tidy_data)[-c(1:2)] <- paste("Average.", colnames(tidy_data)[-c(1:2)], sep="")
 print(colnames(tidy_data))
-write.table(tidy_data, "../tidydata/tidy_data.txt", row.name=FALSE)
-
-## Step 7. Clean up the rawdata directory
-
-unlink(rawdata, recursive = FALSE, force = FALSE)
+write.table(tidy_data, "../tidydata/tidy_data.txt", row.names=FALSE, sep = " ")

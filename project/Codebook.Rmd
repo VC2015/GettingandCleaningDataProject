@@ -43,4 +43,25 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
       [16] "Freq.BodyAccJerkMagnitude.StdDev"  "Freq.BodyGyroMagnitude.Mean"       "Freq.BodyGyroMagnitude.StdDev"    
       [19] "Freq.BodyGyroJerkMagnitude.Mean"   "Freq.BodyGyroJerkMagnitude.StdDev".
 
-10) Create a second, independent tidy data set called "tidy_data" with the average of each variable for each activity and each subject  and save as tidy_data.csv
+10) Create a second, independent tidy data set called "tidy_data" with the average of each variable for each activity and each subject  and save as tidy_data.csv.  The variable names created are as follows:
+
+ [1] "subject_id"                               
+ [2] "activity_id"                              
+ [3] "Average.Time.BodyAccMagnitude.Mean"       
+ [4] "Average.Time.BodyAccMagnitude.StdDev"     
+ [5] "Average.Time.GravityAccMagnitude.Mean"    
+ [6] "Average.Time.GravityAccMagnitude.StdDev"  
+ [7] "Average.Time.BodyAccJerkMagnitude.Mean"   
+ [8] "Average.Time.BodyAccJerkMagnitude.StdDev" 
+ [9] "Average.Time.BodyGyroMagnitude.Mean"      
+[10] "Average.Time.BodyGyroMagnitude.StdDev"    
+[11] "Average.Time.BodyGyroJerkMagnitude.Mean"  
+[12] "Average.Time.BodyGyroJerkMagnitude.StdDev"
+[13] "Average.Freq.BodyAccMagnitude.Mean"       
+[14] "Average.Freq.BodyAccMagnitude.StdDev"     
+[15] "Average.Freq.BodyAccJerkMagnitude.Mean"   
+[16] "Average.Freq.BodyAccJerkMagnitude.StdDev" 
+[17] "Average.Freq.BodyGyroMagnitude.Mean"      
+[18] "Average.Freq.BodyGyroMagnitude.StdDev"    
+[19] "Average.Freq.BodyGyroJerkMagnitude.Mean"  
+[20] "Average.Freq.BodyGyroJerkMagnitude.StdDev"
