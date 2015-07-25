@@ -1,19 +1,6 @@
-##########################################################################################################################################################################################################################################################################################################################################################################################
-# One of the most exciting areas in all of data science right now is wearable computing - see for example this article. 
-# Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
-# http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
-# Here are the data for the project:
-# https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-# You should create one R script called run_analysis.R that does the following. 
-# 1) Merges the training and the test sets to create one data set.
-# 2) Extracts only the measurements on the mean and standard deviation for each measurement. 
-# 3) Uses descriptive activity names to name the activities in the data set
-# 4) Appropriately labels the data set with descriptive variable names. 
-# 5) Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
-# Good luck!
 ###############################################################################################################################################################################################################################################################
+###              Course Project: Getting and Cleaning Data
 ###############################################################################################################################################################################################################################################################
-
 
 ### Step 0. Preparation ################################################################################################################################################################################################
 
@@ -33,7 +20,7 @@ if(!file.exists(file)){download.file(url, file, method="curl")}
 
 rawfolder <- "UCI HAR Dataset"     #rawdata folder
 tidyfolder <- "tidydata"           #tidy data folder
-if(!file.exists(rawfolder)){unzip(file, list = FALSE, overwrite = TRUE, exdir=rawfolder)} 
+if(!file.exists(rawfolder)){unzip(file, list = FALSE, overwrite = TRUE)} 
 if(!file.exists(tidyfolder)){dir.create(tidyfolder)} 
 
 setwd("/Users/VC/Dropbox/Learning/DataScience/GettingData/project/UCI HAR Dataset")
@@ -91,7 +78,7 @@ index<- (
 
 means_and_stds <- data[, index]
 
-##  Step 6. Clean up the variable names a bit;
+##  Step 6. Clean up the variable names a bit
 
 var_names<- colnames(means_and_stds)
 
@@ -108,7 +95,7 @@ for (i in 1:length(var_names))
 
 print(var_names)
 colnames(means_and_stds)<- var_names
-write.csv(means_and_stds, "../tidydata/means_and_stds.cvs")
+write.table(means_and_stds, "../tidydata/means_and_stds.txt", row.name=FALSE)
 
 ## Step 6. Creates a second, independent tidy data set called "tidy_data" with the average of each variable for each activity and each subject
 ## and save as tidy_data.csv
@@ -116,6 +103,9 @@ write.csv(means_and_stds, "../tidydata/means_and_stds.cvs")
 library(plyr)
 tidy_data<- ddply(means_and_stds, .(subject_id, activity_id), .fun=function(x){ colMeans(x[,-c(1:2)]) })
 colnames(tidy_data)[-c(1:2)] <- paste("Average.", colnames(tidy_data)[-c(1:2)], sep="")
-write.csv(tidy_data, "../tidydata/tidy_data.csv")
+print(colnames(tidy_data))
+write.table(tidy_data, "../tidydata/tidy_data.txt", row.name=FALSE)
 
+## Step 7. Clean up the rawdata directory
 
+unlink(rawdata, recursive = FALSE, force = FALSE)
